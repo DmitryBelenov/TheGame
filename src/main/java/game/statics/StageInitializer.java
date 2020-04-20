@@ -110,11 +110,25 @@ public abstract class StageInitializer {
     }
 
     public static Image[] getCharacterWalkRight() throws SlickException {
-        return new Image[]{new Image("character/right/1.png")};
+        return new Image[]{new Image("character/right/1.png"),
+                new Image("character/right/2.png"),
+                new Image("character/right/3.png"),
+                new Image("character/right/4.png"),
+                new Image("character/right/5.png"),
+                new Image("character/right/6.png"),
+                new Image("character/right/7.png"),
+                new Image("character/right/8.png")};
     }
 
     public static Image[] getCharacterWalkLeft() throws SlickException {
-        return new Image[]{new Image("character/left/1.png")};
+        return new Image[]{new Image("character/left/1.png"),
+                new Image("character/left/2.png"),
+                new Image("character/left/3.png"),
+                new Image("character/left/4.png"),
+                new Image("character/left/5.png"),
+                new Image("character/left/6.png"),
+                new Image("character/left/7.png"),
+                new Image("character/left/8.png")};
     }
 
     public static List<QuestItem> getStageQuestItems(int stageId){
