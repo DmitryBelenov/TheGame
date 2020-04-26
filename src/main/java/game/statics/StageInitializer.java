@@ -39,6 +39,11 @@ public abstract class StageInitializer {
                 ,new Door(new Rectangle(152,440, 48,96), new Image("doors/door_open.png"), new Image("doors/door_closed.png"))
                 ,new Door(new Rectangle(1064,192, 48,96), new Image("doors/door_open.png"), new Image("doors/door_closed.png"))
                 ,new Door(new Rectangle(944,1336, 48,96), new Image("doors/door_open.png"), new Image("doors/door_closed.png"))
+                ,new Door(new Rectangle(824,120, 24,120), new Image("doors/up_door_open.png"), new Image("doors/up_door_closed.png"))
+                ,new Door(new Rectangle(1208,448, 24,120), new Image("doors/up_door_open.png"), new Image("doors/up_door_closed.png"))
+                ,new Door(new Rectangle(592,608, 24,120), new Image("doors/up_door_open.png"), new Image("doors/up_door_closed.png"))
+                ,new Door(new Rectangle(232,1136, 24,120), new Image("doors/up_door_open.png"), new Image("doors/up_door_closed.png"))
+                ,new Door(new Rectangle(1048,992, 24,120), new Image("doors/up_door_open.png"), new Image("doors/up_door_closed.png"))
         );
 
             doors.put(1, doors_st1);
