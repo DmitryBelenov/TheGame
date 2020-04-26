@@ -3,6 +3,7 @@ package game.action.factory;
 import game.object.LevelActionShape;
 import game.object.QuestItem;
 import game.statics.ScreenManager;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -29,6 +30,13 @@ public class GetItemFromBoxAction implements Action {
                     ScreenManager.iItems.remove(0);
                 }
                 ScreenManager.iItems.add(item);
+
+                Animation animation = levelActionShape.getTiedAnimation();
+                if (animation != null){
+                    ScreenManager.animateLevelAction(levelActionShape.getTiedAnimation(),
+                            levelActionShape.getActionShape().getX(),
+                            levelActionShape.getActionShape().getY());
+                }
             } else {
                 ScreenManager.setInscription("This item already used here..");
             }

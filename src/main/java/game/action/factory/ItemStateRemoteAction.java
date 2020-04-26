@@ -21,6 +21,11 @@ public class ItemStateRemoteAction implements Action {
             LevelActionShape tiedShape = las.getTiedActionShape();
             if (tiedShape != null){
                 tiedShape.setRemoteActionDone(true);
+                Image img = tiedShape.getAlternateShapeImage();
+                if (img != null){
+                    tiedShape.setShapeImage(img);
+                }
+
                 ScreenManager.setInscription("Remote action '"+tiedShape.getName()+"' done");
 
                 Image altImg = las.getAlternateShapeImage();

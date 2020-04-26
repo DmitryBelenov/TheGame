@@ -3,6 +3,7 @@ package game.statics;
 import game.object.ActionType;
 import game.object.LevelActionShape;
 import game.object.QuestItem;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -18,16 +19,30 @@ public class LevelActions {
     static {
         try {
         // STAGE 1
-        LevelActionShape exit = new LevelActionShape("Exit", 1570, 1500, 30,80, 1.01f, ActionType.stage, null, null,
-                "RESEARCH_CENTER", null, null, false);
+        LevelActionShape exit = new LevelActionShape("Exit", 1570, 1500, 30,80, 1.01f, ActionType.stage,
+                null, null, false, null, "RESEARCH_CENTER", null, null, false);
+
         stage_1.add(exit);
 
-        stage_1.add(new LevelActionShape("Safe", 1291, 1360, 40,72, 1.02f, ActionType.itemBox,
-                new QuestItem(new Image("quest/page.png"),1.01f, 0,0, false, "Key card", "Class D"), null,null,
-                new Image("quest/safe_closed.png"), new Image("quest/safe_opened.png"), false));
+        stage_1.add(new LevelActionShape("Safe", 24, 656, 48,96, 1.02f, ActionType.itemBox,
+                new QuestItem(new Image("quest/card.png"),1.01f, 0,0, false, "Key card", "class D"),
+                null
+                ,
+                false,null,null,
+                new Image("quest/safe_closed.png"),
+                new Image("quest/safe_opened.png"), false));
 
-        stage_1.add(new LevelActionShape("Box", 1100, 1100, 50,80, 0.0f, ActionType.remote_action, null, exit,null,
-                    new Image("quest/safe_closed.png"), new Image("quest/safe_opened.png"), false));
+        LevelActionShape laserDoor = new LevelActionShape("Laser door", 104, 768, 32,90, 0.0f, ActionType.dangerous_barrier,
+                    null,
+                new Animation(StageInitializer.getBang(), 80), false, null, null,
+                new Image("quest/laserfence_on.png"),
+                new Image("quest/laserfence_off.png"), false);
+
+        stage_1.add(laserDoor);
+        stage_1.add(new LevelActionShape("Laser control", 728, 560, 60,90, 0.0f, ActionType.remote_action,
+                    null,null, false, laserDoor,null,
+                new Image("quest/server_on.png"),
+                new Image("quest/server_off.png"), false));
 
         } catch (SlickException e) {
             System.out.println("Can't append action to stage");

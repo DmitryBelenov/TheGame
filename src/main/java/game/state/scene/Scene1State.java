@@ -1,7 +1,7 @@
 package game.state.scene;
 
+import game.object.*;
 import game.object.Character;
-import game.object.Camera;
 import game.statics.ItemActions;
 import game.statics.ScreenManager;
 import game.statics.StageInitializer;
@@ -12,9 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
-import game.object.LevelActionShape;
 import game.statics.LevelActions;
-import game.object.QuestItem;
 
 import java.util.List;
 
@@ -35,15 +33,17 @@ public class Scene1State extends BasicGameState {
 
     private List<QuestItem> questItems;
     private List<LevelActionShape> actionShapes;
+    private List<Door> doors;
 
     public int getID() {
         return 1;
     }
 
     public void init(GameContainer container, StateBasedGame stateBasedGame) throws SlickException {
-        animation = new Animation(StageInitializer.getCharacterStayRight(), 60);
+        animation = new Animation(StageInitializer.getCharacterStayRight(), 100);
 
         characterToMapBinding();
+        ScreenManager.initializeSceneMap(map);
 
         collisionBlock = new Rectangle(tileWidth*14, tileHeight*14, 20,5);
 
@@ -51,6 +51,7 @@ public class Scene1State extends BasicGameState {
 
         questItems = StageInitializer.getStageQuestItems(getID());
         actionShapes = LevelActions.getStageActions(getID());
+        doors = StageInitializer.getStageDoors(getID());
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -82,14 +83,29 @@ public class Scene1State extends BasicGameState {
 
         ScreenManager.listenInventoryKeys(g, gc, camera, collisionBlock, sbg, actionShapes);
 
+        if (doors != null) {
+            if (doors.size() > 0) {
+                for (Door door : doors) {
+                    g.fill(door.getDoorShape());
+                }
+
+                ScreenManager.listenDoors(doors, collisionBlock);
+            }
+        } else {
+            throw new SlickException("Stage doors not initialized");
+        }
+
         // player animation render after all
         player.render();
+
+        // animation over player
+        ScreenManager.renderAnimation();
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
         player.update(gc, mapWidth, mapHeight, tileWidth, tileHeight, map, collisionBlock);
 
-        if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE)){
+        if (gc.getInput().isKeyPressed(Input.KEY_ESCAPE) || StageInitializer.gameOver){
             //todo menu exit here
             sbg.enterState(1001, new FadeOutTransition(), new FadeInTransition());
         }

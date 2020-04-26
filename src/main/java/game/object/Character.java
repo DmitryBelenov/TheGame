@@ -15,7 +15,7 @@ public class Character {
     private Animation animation;
 
     private boolean down, up, right, left;
-    private int duration = 50;
+    private int duration = 35; // 35 - optimal
 
     public Character(int x, int y, Animation animation) {
         this.x = x;
@@ -57,27 +57,27 @@ public class Character {
         int step = 8 /*pixels*/;
 
         /********** walk x,y,z directions ************************/
-        if (input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT)) {
-            if (map.getTileId((x/ step)-1, (y/ step)-1, wallLayerIndex) == 0) {
-                trans.y -= step;
-                trans.x -= step;
-            }
-        } else if (input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT)) {
-            if (map.getTileId((x/ step)+1, (y/ step)-1, wallLayerIndex) == 0) {
-                trans.y -= step;
-                trans.x += step;
-            }
-        } else if (input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT)) {
-            if (map.getTileId((x/ step)-1, (y/ step)+1, wallLayerIndex) == 0) {
-                trans.y += step;
-                trans.x -= step;
-            }
-        } else if (input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT)) {
-            if (map.getTileId((x/ step)+1, (y/ step)+1, wallLayerIndex) == 0) {
-                trans.y += step;
-                trans.x += step;
-            }
-        } else
+//        if (input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_LEFT)) {
+//            if (map.getTileId((x/ step)-1, (y/ step)-1, wallLayerIndex) == 0) {
+//                trans.y -= step;
+//                trans.x -= step;
+//            }
+//        } else if (input.isKeyDown(Input.KEY_UP) && input.isKeyDown(Input.KEY_RIGHT)) {
+//            if (map.getTileId((x/ step)+1, (y/ step)-1, wallLayerIndex) == 0) {
+//                trans.y -= step;
+//                trans.x += step;
+//            }
+//        } else if (input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_LEFT)) {
+//            if (map.getTileId((x/ step)-1, (y/ step)+1, wallLayerIndex) == 0) {
+//                trans.y += step;
+//                trans.x -= step;
+//            }
+//        } else if (input.isKeyDown(Input.KEY_DOWN) && input.isKeyDown(Input.KEY_RIGHT)) {
+//            if (map.getTileId((x/ step)+1, (y/ step)+1, wallLayerIndex) == 0) {
+//                trans.y += step;
+//                trans.x += step;
+//            }
+//        } else
         /**********************************************************/
 
         if (input.isKeyDown(Input.KEY_UP)) {

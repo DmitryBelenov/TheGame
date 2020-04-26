@@ -35,6 +35,8 @@ public class ActionManager {
                 return new GetItemFromBoxActionFactory(levelActionShape);
             case remote_action:
                 return new ItemStateRemoteActionFactory(levelActionShape);
+            case dangerous_barrier:
+                return new DangerousBarrierActionFactory(levelActionShape, sbg);
             default:
                     return null;
         }

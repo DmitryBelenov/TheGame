@@ -10,8 +10,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class SetupGame extends StateBasedGame {
 
-    public static int WIDTH = 1024;
-    public static int HEIGHT = 768;
+//    public static int WIDTH = 1024;
+//    public static int HEIGHT = 768;
+
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
+
     private static int TARGET_FPS = 60;
 
     private SetupGame(String title) {

@@ -15,8 +15,8 @@ public class ItemActions {
                 Image i = item.getImage();
                 i.draw(item.getX(), item.getY());
 
-                Rectangle itemCallArea = new Rectangle(item.getX() - 36, item.getY() - 36, 96, 96);
-                Rectangle playerCollBlock = new Rectangle(player.getX() - 36, player.getY() - 36, 96, 96);
+                Rectangle itemCallArea = new Rectangle(item.getX() - 30, item.getY() - 30, 60, 60);
+                Rectangle playerCollBlock = new Rectangle(player.getX() - 15, player.getY() - 40, 32, 80);
 
 
                 g.fill(itemCallArea);
@@ -30,7 +30,7 @@ public class ItemActions {
 
                     if (gc.getInput().isKeyDown(Input.KEY_E)){
                         item.setShow(false);
-                        ScreenManager.setInscription("Got "+item.getDescription()+": "+item.getContent());
+                        ScreenManager.setInscription(item.getDescription()+": "+item.getContent());
 
                         if (ScreenManager.iItems.size() == 10){
                             ScreenManager.iItems.remove(0);

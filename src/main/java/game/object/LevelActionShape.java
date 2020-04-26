@@ -1,5 +1,6 @@
 package game.object;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -9,6 +10,7 @@ public class LevelActionShape {
     public Rectangle actionShape;
     public float code;
     public QuestItem tiedItem;
+    public Animation tiedAnimation;
     public LevelActionShape tiedActionShape;
     public String goToStageCode;
     public Image shapeImage;
@@ -16,18 +18,23 @@ public class LevelActionShape {
     public boolean remoteActionDone;
 
     public LevelActionShape(String name, float x, float y, float width, float height, float code,
-                            ActionType type, QuestItem tiedItem, LevelActionShape tiedActionShape, String goToStageCode,
-                            Image shapeImage, Image alternateShapeImage, boolean remoteActionDone){
+                            ActionType type, QuestItem tiedItem, Animation tiedAnimation, boolean animationLooping, LevelActionShape tiedActionShape, String goToStageCode,
+                            Image shapeImage, Image alternateShapeImage, boolean remoteActionDone) {
         this.name = name;
         this.type = type;
-        this.actionShape = new Rectangle(x,y,width,height);
+        this.actionShape = new Rectangle(x, y, width, height);
         this.code = code;
         this.tiedItem = tiedItem;
+        this.tiedAnimation = tiedAnimation;
         this.tiedActionShape = tiedActionShape;
         this.goToStageCode = goToStageCode;
         this.shapeImage = shapeImage;
         this.alternateShapeImage = alternateShapeImage;
         this.remoteActionDone = remoteActionDone;
+
+        if (tiedAnimation != null) {
+            this.tiedAnimation.setLooping(animationLooping);
+        }
     }
 
     public String getName() {
@@ -60,6 +67,14 @@ public class LevelActionShape {
 
     public void setTiedItem(QuestItem tiedItem) {
         this.tiedItem = tiedItem;
+    }
+
+    public Animation getTiedAnimation() {
+        return tiedAnimation;
+    }
+
+    public void setTiedAnimation(Animation tiedAnimation) {
+        this.tiedAnimation = tiedAnimation;
     }
 
     public LevelActionShape getTiedActionShape() {
